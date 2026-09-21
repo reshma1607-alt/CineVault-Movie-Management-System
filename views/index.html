@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CineVault - Movie Management</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🎬 CineVault</h1>
+    <p>Movie Management System</p>
+    <button id="logoutBtn" class="logout-btn">
+  ↪ Logout
+</button>
+  </header>
+
+  
+<main>
+  <h2>Available Movies</h2>
+
+  <div class="language-container">
+    <button class="language-btn active" data-language="All">
+      All
+    </button>
+
+    <button class="language-btn" data-language="Telugu">
+      Telugu
+    </button>
+
+    <button class="language-btn" data-language="Hindi">
+      Hindi
+    </button>
+
+    <button class="language-btn" data-language="Tamil">
+      Tamil
+    </button>
+
+    <button class="language-btn" data-language="Kannada">
+      Kannada
+    </button>
+
+    <button class="language-btn" data-language="Malayalam">
+      Malayalam
+    </button>
+
+    <button class="language-btn" data-language="English">
+      English
+    </button>
+    <button class="language-btn" id="recentMoviesBtn">
+  Recently Released
+</button>
+    <button class="language-btn" id="addMovieBtn">
+  ➕ Add Movie
+</button>
+<button class="language-btn" id="favouritesBtn">
+  ❤️ View Favourites
+</button>
+  </div>
+
+  <div class="search-container">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search movies by title or genre..."
+    >
+    <!-- Sort Movies -->
+<select id="sortMovies">
+  <option value="">Sort Movies</option>
+  <option value="ratingHigh">Rating: High to Low</option>
+  <option value="ratingLow">Rating: Low to High</option>
+  <option value="yearNew">Release Year: Newest</option>
+  <option value="yearOld">Release Year: Oldest</option>
+  <option value="priceLow">Price: Low to High</option>
+  <option value="priceHigh">Price: High to Low</option>
+</select>
+  </div>
+
+  <!-- Dashboard Statistics -->
+<section class="dashboard" id="dashboard">
+
+  <div class="stat-card">
+    <h3>Total Movies</h3>
+    <p id="totalMovies">0</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>Average Rating</h3>
+    <p id="averageRating">0</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>Total Favourites</h3>
+    <p id="totalFavourites">0</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>Languages</h3>
+    <p id="languageCount">0</p>
+  </div>
+
+</section>
+
+<!-- Language Statistics -->
+<section class="language-statistics">
+  <h2>Movies by Language</h2>
+  <div id="languageStats"></div>
+</section>
+
+<!-- Movie Container -->
+<section id="movieContainer">
+  <!-- Movies will be displayed here -->
+</section>
+
+</main>
+<!-- Movie Details Modal -->
+<div id="movieModal" class="movie-modal">
+  <div class="modal-content">
+
+    <button id="closeModal" class="close-btn">
+      &times;
+    </button>
+
+    <div id="movieDetails">
+      <!-- Movie details will appear here -->
+    </div>
+
+  </div>
+</div>
+<!-- Add Movie Modal -->
+<div id="addMovieModal" class="movie-modal">
+  <div class="modal-content">
+
+    <button id="closeAddMovie" class="close-btn">
+      &times;
+    </button>
+
+    <h2>Add New Movie</h2>
+
+    <form id="addMovieForm">
+
+      <input
+        type="text"
+        id="movieTitle"
+        placeholder="Movie Title"
+        required
+      >
+
+      <input
+        type="text"
+        id="movieGenre"
+        placeholder="Genre"
+        required
+      >
+
+      <select id="movieLanguage" required>
+        <option value="">Select Language</option>
+        <option value="Telugu">Telugu</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Tamil">Tamil</option>
+        <option value="Kannada">Kannada</option>
+        <option value="Malayalam">Malayalam</option>
+        <option value="English">English</option>
+      </select>
+
+      <input
+        type="number"
+        id="movieRating"
+        placeholder="Rating"
+        step="0.1"
+        min="0"
+        max="10"
+        required
+      >
+
+      <input
+        type="number"
+        id="movieYear"
+        placeholder="Release Year"
+        required
+      >
+
+      <input
+        type="number"
+        id="moviePrice"
+        placeholder="Ticket Price"
+        required
+      >
+
+      <input
+        type="text"
+        id="moviePoster"
+        placeholder="Poster URL"
+        required
+      >
+
+      <textarea
+        id="movieDescription"
+        placeholder="Movie Description"
+        required
+      ></textarea>
+
+      <button type="submit" class="favourite-btn">
+        ➕ Add Movie
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- Edit Movie Modal -->
+<div id="editMovieModal" class="movie-modal">
+  <div class="modal-content">
+    <button id="closeEditMovie" class="close-btn">&times;</button>
+
+    <h2>Edit Movie</h2>
+
+    <form id="editMovieForm">
+      <input type="text" id="editMovieTitle" placeholder="Movie Title" required>
+
+      <input type="text" id="editMovieGenre" placeholder="Genre" required>
+
+      <select id="editMovieLanguage" required>
+        <option value="">Select Language</option>
+        <option value="Telugu">Telugu</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Tamil">Tamil</option>
+        <option value="Kannada">Kannada</option>
+        <option value="Malayalam">Malayalam</option>
+        <option value="English">English</option>
+      </select>
+
+      <input
+        type="number"
+        id="editMovieRating"
+        placeholder="Rating"
+        step="0.1"
+        min="0"
+        max="10"
+        required
+      >
+
+      <input
+        type="number"
+        id="editMovieYear"
+        placeholder="Release Year"
+        required
+      >
+
+      <input
+        type="number"
+        id="editMoviePrice"
+        placeholder="Ticket Price"
+        required
+      >
+
+      <input
+        type="text"
+        id="editMoviePoster"
+        placeholder="Poster URL"
+        required
+      >
+
+      <textarea
+        id="editMovieDescription"
+        placeholder="Movie Description"
+        required
+      ></textarea>
+
+      <button type="submit" class="edit-movie-btn">
+        ✏️ Update Movie
+      </button>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script type="module" src="../js/main.js"></script>
+<script type="module" src="../js/authGuard.js"></script>
+<script type="module" src="../js/logout.js"></script>
+
+<div id="toastContainer"></div>
+
+</body>
+</html>
