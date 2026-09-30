@@ -95,6 +95,18 @@
       "poster": "../assets/DC.jpg",
       "description": "Action",
       "duration": "2h"
+    },
+    {
+      "title": "Pushpa2",
+      "genre": "Action",
+      "language": "Telugu",
+      "rating": 9.5,
+      "releaseYear": 2024,
+      "ticketPrice": 300,
+      "poster": "../assets/pushpa2.jpg",
+      "description": "Action movie",
+      "duration": "2h",
+      "id": "gCAdbSlkiJk"
     }
   ],
   "favourites": [
@@ -111,15 +123,15 @@
       "duration": "2h 32m"
     },
     {
-      "id": "I4lEmbnWAA4",
+      "id": "22xSpioJOiE",
       "title": "RRR",
       "genre": "Action",
       "language": "Telugu",
-      "rating": 8,
-      "description": "Two revolutionaries form a powerful friendship while fighting for freedom.",
-      "poster": "https://images.moviebuff.com/ac662651-e383-4051-b78b-438bc79b4482?w=600",
-      "ticketPrice": 220,
+      "rating": 9,
       "releaseYear": 2022,
+      "ticketPrice": 220,
+      "poster": "https://images.moviebuff.com/ac662651-e383-4051-b78b-438bc79b4482?w=600",
+      "description": "Two revolutionaries form a powerful friendship while fighting for freedom.",
       "duration": "3h 7m"
     }
   ],

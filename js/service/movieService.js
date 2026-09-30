@@ -14,14 +14,19 @@ export const getMovies = async () => {
 
 // Add a new movie
 export const addMovie = async (movie) => {
-  try {
-    const response = await api.post("/movies", movie);
-    return response.data;
-  } catch (error) {
-    throw new Error(handleError(error));
-  }
-};
+  const { data } = await api.get("/movies");
 
+  const exists = data.some(
+    m => m.title.trim().toLowerCase() === movie.title.trim().toLowerCase()
+  );
+
+  if (exists) {
+    alert("Movie already added!");
+    return;
+  }
+
+  return (await api.post("/movies", movie)).data;
+};
 // Delete a movie
 export const deleteMovie = async (movieId) => {
   try {
